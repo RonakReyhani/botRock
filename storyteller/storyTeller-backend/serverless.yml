@@ -12,36 +12,36 @@ custom:
     number: 3
   var:
     BUCKET_NAME: ${self:custom.vars.default.BUCKET_NAME}
-    
+    # change the bucket name 
   vars:
     default:
-      BUCKET_NAME: story-teller-bucket
+      BUCKET_NAME: story-teller-with-bedrock
 
 
-appSync:
-    name: storyteller-service-appsync
-    # authentication:
-      # If you using OpenID: 
-      # type: OPENID_CONNECT
-      # config:
-      #   issuer: ${self:custom.var.OAUTH_ISSUER}
-      #   clientId: ${self:custom.var.OAUTH_AUDIENCE}    
-    logging:
-      level: ALL # Logging Level: NONE | ERROR | ALL
-      excludeVerboseContent: false     
-    schema:
-      - schema.graphql
-    resolvers:
-      - ${file(mapping-templates.yml)}
-    pipelineFunctions:
-      - ${file(function-configuration.yml)}
-    dataSources:
-      - ${file(datasources.yml)}
+  appSync:
+      name: storyteller-service-appsync
+      authenticationType: API_KEY
+        # If you using OpenID: 
+        # type: OPENID_CONNECT
+        # config:
+        #   issuer: ${self:custom.var.OAUTH_ISSUER}
+        #   clientId: ${self:custom.var.OAUTH_AUDIENCE}    
+      logging:
+        level: ALL # Logging Level: NONE | ERROR | ALL
+        excludeVerboseContent: false     
+      schema:
+        - schema.graphql
+      resolvers:
+        - ${file(mapping-templates.yml)}
+      pipelineFunctions:
+        - ${file(function-configuration.yml)}
+      dataSources:
+        - ${file(datasources.yml)}
 
 provider:
   name: aws
   runtime: nodejs18.x
-  region: ap-southeast-2
+  region: us-east-1
   timeout: 900
   tracing: 
     lambda: true

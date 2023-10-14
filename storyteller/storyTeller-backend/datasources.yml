@@ -1,8 +1,8 @@
 generateStoryDatasource:
   type: AWS_LAMBDA
   config:
-    functionName: generateStoryFunction
+    functionName: generateStoryResolver
 generateIllustrationDatasource:
   type: AWS_LAMBDA
   config:
-    functionName: generateIllustrationFunction
+    functionName: generateIllustrationResolver
