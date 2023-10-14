@@ -29,7 +29,9 @@ Follow these instructions to get the Story Teller project up and running on your
 
 ### Backend Setup
 
-- **Deploy Serverless Stack:** `npm run deploy`
+1. **Install dependencies:** `npm install`.
+2. **AWS CLI:** Setup and configure your AWS CLI.
+3. **Deploy Serverless Stack:** `npm run deploy`
 
 
 ### Frontend Setup
