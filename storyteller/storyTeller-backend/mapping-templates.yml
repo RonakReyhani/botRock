@@ -1,0 +1,16 @@
+Mutation.generateStory:
+  dataSource: generateStoryDatasource
+  request: mapping-templates/Util.noop.request.vtl
+  response: mapping-templates/Util.noop.response.vtl
+  kind: PIPELINE
+  functions:
+    - generateStoryFunction
+
+Mutation.getIllustration:
+  dataSource: generateIllustrationDatasource
+  request: mapping-templates/Util.noop.request.vtl
+  response: mapping-templates/Util.noop.response.vtl
+  kind: PIPELINE
+  functions:
+    - generateIllustrationFunction
+

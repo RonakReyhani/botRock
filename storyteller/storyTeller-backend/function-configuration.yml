@@ -1,0 +1,8 @@
+generateStoryFunction:
+  dataSource: generateStoryDatasource
+  request: mapping-templates/LambdaWithInfo.request.vtl
+  response: mapping-templates/Lambda.response.vtl
+generateIllustrationFunction:
+  dataSource: generateIllustrationDatasource
+  request: mapping-templates/LambdaWithInfo.request.vtl
+  response: mapping-templates/Lambda.response.vtl

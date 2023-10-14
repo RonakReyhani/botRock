@@ -1,0 +1,12 @@
+schema {
+  mutation: Mutation
+  query: Query
+}
+
+type Mutation {
+    generateStory(topic: String!): String!
+    getIllustration(contents : [String!]!): [String!]!
+}
+type Query {
+    dummyQuery: String
+}

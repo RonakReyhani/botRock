@@ -1,0 +1,88 @@
+service: story-teller-service
+
+plugins:
+  - serverless-appsync-plugin
+  - serverless-webpack
+  - serverless-prune-plugin
+  - serverless-cloudformation-changesets-v3
+
+custom:
+  prune:
+    automatic: true
+    number: 3
+  var:
+    BUCKET_NAME: ${self:custom.vars.default.BUCKET_NAME}
+    
+  vars:
+    default:
+      BUCKET_NAME: story-teller-bucket
+
+
+appSync:
+    name: storyteller-service-appsync
+    # authentication:
+      # If you using OpenID: 
+      # type: OPENID_CONNECT
+      # config:
+      #   issuer: ${self:custom.var.OAUTH_ISSUER}
+      #   clientId: ${self:custom.var.OAUTH_AUDIENCE}    
+    logging:
+      level: ALL # Logging Level: NONE | ERROR | ALL
+      excludeVerboseContent: false     
+    schema:
+      - schema.graphql
+    resolvers:
+      - ${file(mapping-templates.yml)}
+    pipelineFunctions:
+      - ${file(function-configuration.yml)}
+    dataSources:
+      - ${file(datasources.yml)}
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-southeast-2
+  timeout: 900
+  tracing: 
+    lambda: true
+  iamManagedPolicies:
+    - arn:aws:iam::aws:policy/AWSXrayWriteOnlyAccess
+
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - s3:GetObject
+            - s3:PutObject
+            - s3:ListBucket
+            - s3:ListObject
+          Resource:
+            - arn:aws:s3:::${self:custom.var.BUCKET_NAME}
+            - arn:aws:s3:::${self:custom.var.BUCKET_NAME}/*
+        - Effect: Allow
+          Action:
+            #  consider limiting the access to bedrock; least privilege principal
+            - bedrock:*
+          Resource: '*'
+functions:
+  generateStoryResolver:
+    handler: src/handlers/generateStory.generateStoryHandler
+    environment:
+      BUCKET_NAME: ${self:custom.var.BUCKET_NAME}
+  generateIllustrationResolver:
+    handler: src/handlers/illustrateStory.getIllustrationsHandler
+    environment:
+      BUCKET_NAME: ${self:custom.var.BUCKET_NAME}
+
+resources:
+  Resources:
+    IllustrationBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        AccessControl: Private
+        BucketEncryption:
+          ServerSideEncryptionConfiguration:
+            - ServerSideEncryptionByDefault:
+                SSEAlgorithm: AES256
+        BucketName: ${self:custom.var.BUCKET_NAME}
