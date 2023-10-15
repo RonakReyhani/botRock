@@ -16,8 +16,8 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  generateStory: Scalars['String']['output'];
-  getIllustration: Array<Scalars['String']['output']>;
+  generateStory: Stroy;
+  getIllustration: UrLs;
 };
 
 
@@ -33,4 +33,14 @@ export type MutationGetIllustrationArgs = {
 export type Query = {
   __typename?: 'Query';
   dummyQuery?: Maybe<Scalars['String']['output']>;
+};
+
+export type Stroy = {
+  __typename?: 'Stroy';
+  story: Scalars['String']['output'];
+};
+
+export type UrLs = {
+  __typename?: 'URLs';
+  presignedUrls: Array<Scalars['String']['output']>;
 };

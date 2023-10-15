@@ -71,7 +71,7 @@ class StoryTellerAdaptor implements IStoryTeller {
     }
 
     private constructStoryPrompt = (topic: string): string => {
-        return `"Write a story about ${topic} in 400 words. The story has to be in 3 separate paragraph. Each paragraph has to be  clearly labeled \\\"0.\\\", \\\"1.\\\" and \\\"2.\\\".\"`
+        return `"Write a story about ${topic} in maximum 400 words. The story has to be in 3 separate paragraph with length of 120 words. Each paragraph has to be clearly labeled \\\"0.\\\", \\\"1.\\\" and \\\"2.\\\".\"`
     }
 
     private constructStoryRequestPayload = (prompt: string, maxToken: number) => {

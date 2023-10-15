@@ -2,10 +2,15 @@ schema {
   mutation: Mutation
   query: Query
 }
-
+type Stroy {
+  story: String!
+}
+type URLs {
+  presignedUrls: [String!]!
+}
 type Mutation {
-    generateStory(topic: String!): String!
-    getIllustration(contents : [String!]!): [String!]!
+    generateStory(topic: String!): Stroy!
+    getIllustration(contents : [String!]!): URLs!
 }
 type Query {
     dummyQuery: String

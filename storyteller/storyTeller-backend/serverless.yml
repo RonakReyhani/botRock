@@ -12,7 +12,7 @@ custom:
     number: 3
   var:
     BUCKET_NAME: ${self:custom.vars.default.BUCKET_NAME}
-    # change the bucket name 
+    # change the bucket name to your bucket name 
   vars:
     default:
       BUCKET_NAME: story-teller-with-bedrock
