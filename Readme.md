@@ -3,7 +3,7 @@
 This repository contains code examples related to my blog posts on Amazon Bedrock.
 
 ## Blog Posts
-- [Amazon Bedrock introductions](link-to-blog-post-1)
+- [Amazon Bedrock introduction](link-to-blog-post-1)
 - [Hands on Project](link-to-blog-post-2)
 
 ## Build a simple story teller project with Amazon Bedrock.
