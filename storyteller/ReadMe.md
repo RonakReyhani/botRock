@@ -32,10 +32,22 @@ Follow these instructions to get the Story Teller project up and running on your
 1. **Install dependencies:** `npm install`.
 2. **AWS CLI:** Setup and configure your AWS CLI.
 3. **Deploy Serverless Stack:** `npm run deploy`
+4. ***AppSync config:** download your appsync config from Appsync console
 
 
 ### Frontend Setup
 
+0. **Appsync Config:** Copy your appsync config into a file named `Appsync.js`
+Config should look like:
+```
+export default {
+    "aws_appsync_graphqlEndpoint": "https://xxxx.appsync-api.region.amazonaws.com/graphql",
+    "aws_appsync_region": "region",
+    "aws_appsync_authenticationType": "API_KEY",
+    "aws_appsync_apiKey": "xxxxxxxxxxxxxxx",
+}
+
+```
 1. **Install dependencies:** `npm install`.
 2. **Run Web Application locally:** `npm run dev`.
 
