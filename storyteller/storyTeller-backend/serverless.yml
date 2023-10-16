@@ -15,7 +15,7 @@ custom:
     # change the bucket name to your bucket name 
   vars:
     default:
-      BUCKET_NAME: story-teller-with-bedrock
+      BUCKET_NAME: "SET_YOUR_BUCKET_NAME"
 
 
   appSync:
